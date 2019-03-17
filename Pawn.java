@@ -21,7 +21,7 @@ public class Pawn extends ChessPiece {
             return false;
 
         //use helper methods to check two valid types of moves
-        if ((isAdvancing(move, board)) || (isCapturing(move, board)))
+        if ((isAdvancing(move, board)) || (isCapturing(move, board)) || (isEnPassantCapturing(move, board)))
             return true;
         else return false;
     }
@@ -98,6 +98,35 @@ public class Pawn extends ChessPiece {
                     return true;
         }
         return false;
+    }
+
+    public boolean isEnPassantCapturing(Move move, IChessPiece[][] board) {
+        boolean enPassant = false;
+//        if (board[move.fromRow][move.fromColumn].player() == Player.WHITE) {
+//            if (move.fromRow != board.length - 5)
+//                return enPassant;
+//            if (move.fromColumn >= board[0].length - 7) {
+//                if (board[move.fromRow][move.fromColumn - 1].equals(new Pawn(Player.BLACK)))
+//                    enPassant = true;
+//            }
+//            if (move.fromColumn <= 7) {
+//                if (board[move.fromRow][move.fromColumn + 1].equals(new Pawn(Player.BLACK)))
+//                    enPassant = true;
+//            }
+//        }
+//        if (board[move.fromRow][move.fromColumn].player() == Player.BLACK) {
+//            if (move.fromRow != board.length - 4)
+//                return enPassant;
+//            if (move.fromColumn >= board[0].length - 7) {
+//                if (board[move.fromRow][move.fromColumn - 1].equals(new Pawn(Player.WHITE)))
+//                    enPassant = true;
+//            }
+//            if (move.fromColumn <= 7) {
+//                if (board[move.fromRow][move.fromColumn + 1].equals(new Pawn(Player.WHITE)))
+//                    enPassant = true;
+//            }
+//        }
+        return enPassant;
     }
 
     @Override
