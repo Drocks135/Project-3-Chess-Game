@@ -48,6 +48,7 @@ public class ChessModel implements IChessModel, Cloneable {
 
     public boolean isValidMove(Move move) {
         boolean valid = false;
+        Move lastMove = null;
 
         if ((board[move.fromRow][move.fromColumn] != null) &&
                 (board[move.fromRow][move.fromColumn].isValidMove(move, board)) &&
@@ -58,8 +59,16 @@ public class ChessModel implements IChessModel, Cloneable {
             }
             if (isSelfCheck(move))
                 return false;
+//            if (board[move.fromRow][move.fromColumn] instanceof Pawn) {
+//                if (((Pawn) board[move.fromRow][move.fromColumn]).isEnPassantCapturing(move, board)) {
+//                    lastMove = moveArrayList.get(moveArrayList.size() - 1);
+//                    if ((board[lastMove.toRow][lastMove.toColumn] instanceof Pawn) &&
+//                            (Math.abs(lastMove.fromRow - lastMove.toRow) == 2))
+//                        valid = true;
+//                    else valid = false;
+//                }
+//            }
             else valid = true;
-            valid = true;
         }
         return valid;
     }
@@ -79,6 +88,7 @@ public class ChessModel implements IChessModel, Cloneable {
                     c = board[0].length;
                 }
             }
+        //is the other player putting you in check
         for (int r = 0; r < board.length; r++)
             for (int c = 0; c < board[0].length; c++) {
                 if ((board[r][c] != null) &&
@@ -258,7 +268,8 @@ public class ChessModel implements IChessModel, Cloneable {
                         (board[r][c].player() == player)) {
                     for (int row = 0; row < board.length; row++)
                         for (int col = 0; col < board[0].length; col++)
-                            if (board[r][c].isValidMove(new Move(r, c, row, col), board)) {
+                            if (this.isValidMove(new Move(r, c, row, col))) {
+                                System.out.println("The move is " + new Move(r, c, row, col));
                                 complete = false;
                                 r = board.length;
                                 c = board[0].length;

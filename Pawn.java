@@ -21,12 +21,12 @@ public class Pawn extends ChessPiece {
             return false;
 
         //use helper methods to check two valid types of moves
-        if ((isAdvancing(move, board)) || (isCapturing(move, board)))
+        if ((isAdvancing(move, board)) || (isCapturing(move, board)) || (isEnPassantCapturing(move, board)))
             return true;
         else return false;
     }
 
-    public boolean isAdvancing(Move move, IChessPiece[][] board) {            //FIXME assumes black pieces on top maybe want them to be changeable
+    public boolean isAdvancing(Move move, IChessPiece[][] board) {
         if (move.fromColumn != move.toColumn)
             return false;
         if (moveCounter == 0) {
@@ -98,6 +98,35 @@ public class Pawn extends ChessPiece {
                     return true;
         }
         return false;
+    }
+
+    public boolean isEnPassantCapturing(Move move, IChessPiece[][] board) {
+        boolean enPassant = false;
+//        if (board[move.fromRow][move.fromColumn].player() == Player.WHITE) {
+//            if (move.fromRow != board.length - 5)
+//                return enPassant;
+//            if (move.fromColumn >= board[0].length - 7) {
+//                if (board[move.fromRow][move.fromColumn - 1].equals(new Pawn(Player.BLACK)))
+//                    enPassant = true;
+//            }
+//            if (move.fromColumn <= 7) {
+//                if (board[move.fromRow][move.fromColumn + 1].equals(new Pawn(Player.BLACK)))
+//                    enPassant = true;
+//            }
+//        }
+//        if (board[move.fromRow][move.fromColumn].player() == Player.BLACK) {
+//            if (move.fromRow != board.length - 4)
+//                return enPassant;
+//            if (move.fromColumn >= board[0].length - 7) {
+//                if (board[move.fromRow][move.fromColumn - 1].equals(new Pawn(Player.WHITE)))
+//                    enPassant = true;
+//            }
+//            if (move.fromColumn <= 7) {
+//                if (board[move.fromRow][move.fromColumn + 1].equals(new Pawn(Player.WHITE)))
+//                    enPassant = true;
+//            }
+//        }
+        return enPassant;
     }
 
     @Override
